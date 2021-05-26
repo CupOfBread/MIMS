@@ -18,4 +18,4 @@ Java课程设计
 | lombok | 1.18.20 |
 
 ## License
-- GPL v3
+- MPL 2.0
