@@ -1,0 +1,9 @@
+${AnsiColor.BRIGHT_YELLOW}
+   _____    .___     _____      _________
+  /     \   |   |   /     \    /   _____/
+ /  \ /  \  |   |  /  \ /  \   \_____  \
+/    Y    \ |   | /    Y    \  /        \
+\____|__  / |___| \____|__  / /_______  /
+        \/                \/          \/
+                                   ${AnsiColor.WHITE}============= MIMS v0.0.1 beta
+Spring Boot Version: ${spring-boot.version}

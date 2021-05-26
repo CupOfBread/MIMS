@@ -1,0 +1,24 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 10MB
+      max-file-size: 10MB
+  #下面是数据库数据源的连接
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mims?characterEncoding=UTF-8&useUnicode=true&serverTimezone=UTC&useSSL=true
+    username: root
+    password: Ycw24689968
+  web:
+    resources:
+      chain:
+        compressed: true
+        cache: true
+
+logging:
+  level:
+    root: info
+    com.mp.dao: info
+server:
+  port: 10003
