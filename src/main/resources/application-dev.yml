@@ -21,4 +21,4 @@ logging:
     root: info
     com.mp.dao: info
 server:
-  port: 10003
+  port: 20001
