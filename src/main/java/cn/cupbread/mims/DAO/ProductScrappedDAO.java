@@ -1,15 +1,9 @@
 package cn.cupbread.mims.DAO;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import cn.cupbread.mims.Entity.ProductScrapped;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-
 @Repository
-public interface ProductScrappedDAO {
+public interface ProductScrappedDAO extends BaseMapper<ProductScrapped> {
 }
