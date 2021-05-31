@@ -2,6 +2,8 @@ package cn.cupbread.mims.Entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -12,11 +14,21 @@ import lombok.experimental.Accessors;
  * @description :
  */
 
+@ApiModel(value = "Product产品类")
 @Accessors(chain = true)
 @Data
 public class Product {
 
     @TableId(type = IdType.AUTO)
     private Long id;
+
+    @ApiModelProperty(value = "产品图片")
+    private String img;
+
+    @ApiModelProperty(value = "产品名称")
+    private String name;
+
+    @ApiModelProperty(value = "产品货号")
+    private Integer itemNumber;
 
 }
