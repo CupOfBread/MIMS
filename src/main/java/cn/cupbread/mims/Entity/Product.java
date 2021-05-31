@@ -31,4 +31,28 @@ public class Product {
     @ApiModelProperty(value = "产品货号")
     private Integer itemNumber;
 
+    @ApiModelProperty(value = "产品规格")
+    private String specifications;
+
+    @ApiModelProperty(value = "条形码")
+    private String barCode;
+
+    @ApiModelProperty(value = "计量单位")
+    private Long unit;
+
+    @ApiModelProperty(value = "销售价")
+    private Double sales;
+
+    @ApiModelProperty(value = "进货价")
+    private Double purchase;
+
+    @ApiModelProperty(value = "备注")
+    private String remarks;
+
+    @ApiModelProperty(value = "产品分类id")
+    private Long cid;
+
+    @ApiModelProperty(value = "创建员工")
+    private Long uid;
+
 }
