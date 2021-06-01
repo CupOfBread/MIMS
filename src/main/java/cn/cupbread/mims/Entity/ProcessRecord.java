@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Date;
 @ApiModel(value = "ProcessRecord加工记录类")
 @Accessors(chain = true)
 @Data
-public class ProcessRecord {
+public class ProcessRecord implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Long id;

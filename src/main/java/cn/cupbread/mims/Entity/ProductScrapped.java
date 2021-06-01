@@ -7,12 +7,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @ApiModel(value = "ProductScrapped产品报废类")
 @Accessors(chain = true)
 @Data
-public class ProductScrapped {
+public class ProductScrapped implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Long id;

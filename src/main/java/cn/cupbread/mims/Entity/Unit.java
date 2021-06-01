@@ -7,10 +7,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 @ApiModel(value = "Unit计量单位类")
 @Accessors(chain = true)
 @Data
-public class Unit {
+public class Unit implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Long id;

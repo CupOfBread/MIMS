@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author : Cup Of Bread
  * @version : 1.0.0
@@ -17,7 +19,7 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "Product产品类")
 @Accessors(chain = true)
 @Data
-public class Product {
+public class Product implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Long id;

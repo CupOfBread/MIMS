@@ -3,6 +3,8 @@ package cn.cupbread.mims.Component;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author : CupOfBread
  * @version : 0.1.0
@@ -12,7 +14,7 @@ import lombok.experimental.Accessors;
 
 @Accessors(chain = true)
 @Data
-public class RetResponse {
+public class RetResponse implements Serializable {
     private final static String SUCCESS = "success";
 
     public int status;
