@@ -1,6 +1,10 @@
 package cn.cupbread.mims.Service;
 
 import cn.cupbread.mims.Entity.User;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * @author : Cup Of Bread
@@ -9,23 +13,24 @@ import cn.cupbread.mims.Entity.User;
  * @description :
  */
 
-public interface UserService {
+public interface UserService extends IService<User> {
 
-    User getUserById(Long id);
+    User getById(Long id);
 
-    User getUserByEmail(String email);
+    User getByEmail(String email);
 
-    User getUserByName(String name);
+    User getByName(String name);
 
-    User getUserByPhone(String phone);
+    User getByPhone(String phone);
 
-    Integer addUser(User user);
+    IPage<User> get(QueryWrapper<User> queryWrapper);
 
-    Integer updateUser(User user);
+    IPage<User> get(QueryWrapper<User> queryWrapper, Page<User> userPage);
 
-    Integer delUser(Long id);
+    Integer add(User user);
 
+    Integer update(User user);
 
-
+    Integer del(Long id);
 
 }

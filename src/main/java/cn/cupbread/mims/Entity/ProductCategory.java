@@ -12,7 +12,7 @@ import java.io.Serializable;
 @ApiModel(value = "Category产品分类类")
 @Accessors(chain = true)
 @Data
-public class Category implements Serializable {
+public class ProductCategory implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Long id;
