@@ -1,5 +1,8 @@
 package cn.cupbread.mims.Service;
 
+import cn.cupbread.mims.Entity.ProductInRecord;
+import com.baomidou.mybatisplus.extension.service.IService;
+
 /**
  * @author : Cup Of Bread
  * @version : 1.0.0
@@ -7,5 +10,5 @@ package cn.cupbread.mims.Service;
  * @description :
  */
 
-public interface ProductInRecordService {
+public interface ProductInRecordService extends IService<ProductInRecord> {
 }
