@@ -15,17 +15,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface ProductService extends IService<Product> {
 
-    Product getById(Long id);
-
-    Integer add(Product product);
-
-    Integer update(Product product);
-
-    Integer del(Long id);
-
-    IPage<Product> get(QueryWrapper<Product> queryWrapper);
-
-    IPage<Product> get(QueryWrapper<Product> queryWrapper, Page<Product> productPage);
+//    Product getById(Long id);
+//    Integer add(Product product);
+//    Integer update(Product product);
+//    Integer del(Long id);
+//    IPage<Product> get(QueryWrapper<Product> queryWrapper);
+//    IPage<Product> get(QueryWrapper<Product> queryWrapper, Page<Product> productPage);
 
 
 }

@@ -44,4 +44,7 @@ public class ProductInRecord implements Serializable {
 
     @ApiModelProperty(value = "金额")
     private Double amount;
+
+    @ApiModelProperty(value = "数量")
+    private Long quantity;
 }

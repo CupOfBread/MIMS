@@ -15,22 +15,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface UserService extends IService<User> {
 
-    User getById(Long id);
-
-    User getByEmail(String email);
-
-    User getByName(String name);
-
-    User getByPhone(String phone);
-
-    IPage<User> get(QueryWrapper<User> queryWrapper);
-
-    IPage<User> get(QueryWrapper<User> queryWrapper, Page<User> userPage);
-
-    Integer add(User user);
-
-    Integer update(User user);
-
-    Integer del(Long id);
+//    User getById(Long id);
+//    User getByEmail(String email);
+//    User getByName(String name);
+//    User getByPhone(String phone);
+//    IPage<User> get(QueryWrapper<User> queryWrapper);
+//    IPage<User> get(QueryWrapper<User> queryWrapper, Page<User> userPage);
+//    Integer add(User user);
+//    Integer update(User user);
+//    Integer del(Long id);
 
 }
