@@ -2,10 +2,8 @@ package cn.cupbread.mims.Controller;
 
 import cn.cupbread.mims.Component.RetResponse;
 import cn.cupbread.mims.Entity.Inventory;
-import cn.cupbread.mims.Entity.Product;
 import cn.cupbread.mims.Entity.Warehouse;
 import cn.cupbread.mims.Service.InventoryService;
-import cn.cupbread.mims.Service.ProductService;
 import cn.cupbread.mims.Service.WarehouseService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
