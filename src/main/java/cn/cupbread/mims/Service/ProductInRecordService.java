@@ -11,4 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 
 public interface ProductInRecordService extends IService<ProductInRecord> {
+
+
+
 }

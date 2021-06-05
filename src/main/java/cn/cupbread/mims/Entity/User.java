@@ -28,6 +28,9 @@ public class User implements Serializable {
     @ApiModelProperty(value = "账号")
     private String name;
 
+    @ApiModelProperty(value = "用户组")
+    private String userGroup;
+
     @ApiModelProperty(value = "密码")
     private String password;
 
@@ -44,11 +47,7 @@ public class User implements Serializable {
     private Date updateTime;
 
     @ApiModelProperty(value = "手机")
-    private String mobile;
-
-    @ApiModelProperty(value = "用户组")
-    private String group;
-
+    private String phone;
 
 
 }
