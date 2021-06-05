@@ -26,7 +26,7 @@ public class Supplier implements Serializable {
     private String linkman;
 
     @ApiModelProperty(value = "手机")
-    private String mobile;
+    private String phone;
 
     @ApiModelProperty(value = "邮编")
     private String pc;
@@ -55,6 +55,6 @@ public class Supplier implements Serializable {
     private Date updateTime;
 
     @ApiModelProperty(value = "更新人id")
-    private Date updateUid;
+    private Date uId;
 
 }

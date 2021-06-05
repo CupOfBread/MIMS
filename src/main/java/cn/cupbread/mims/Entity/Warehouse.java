@@ -24,7 +24,7 @@ public class Warehouse implements Serializable {
     private String address;
 
     @ApiModelProperty(value = "负责人")
-    private String personInCharge;
+    private Long personInCharge;
 
     @ApiModelProperty(value = "库存")
     private Long stock;
