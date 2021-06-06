@@ -12,6 +12,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface ProductInRecordService extends IService<ProductInRecord> {
 
-
-
+    // 产品入库
+    Boolean productIn(ProductInRecord record, Long uId);
 }
