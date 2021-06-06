@@ -7,6 +7,7 @@ import cn.cupbread.mims.Entity.Unit;
 import cn.cupbread.mims.Service.*;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 
 @RequestMapping("/unit")
+@Api(tags = {"计量单位控制类"})
 @RestController
 public class UnitController {
 

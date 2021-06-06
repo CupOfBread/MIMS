@@ -53,7 +53,6 @@ public class ProductInRecordServiceImpl extends ServiceImpl<ProductInRecordDAO, 
         warehouse.setStock(warehouse.getStock() + record.getQuantity());
         boolean warehouseSave = warehouseService.updateById(warehouse);
         //保存入库记录
-        System.out.println(new Date());
         record.setCreateTime(new Date());
         record.setUId(user.getId());
         boolean productInSave = productInRecordService.save(record);

@@ -1,7 +1,6 @@
 package cn.cupbread.mims.Controller;
 
 import cn.cupbread.mims.Component.RetResponse;
-import cn.cupbread.mims.Entity.Product;
 import cn.cupbread.mims.Entity.ProductInRecord;
 import cn.cupbread.mims.Entity.Supplier;
 import cn.cupbread.mims.Service.ProductInRecordService;
@@ -10,6 +9,7 @@ import cn.cupbread.mims.Service.SupplierService;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,6 +29,7 @@ import java.util.List;
  */
 
 @RequestMapping("/supplier")
+@Api(tags = {"供应商控制类"})
 @RestController
 public class SupplierController {
 
@@ -56,7 +58,7 @@ public class SupplierController {
     @ApiOperation("更新供应商")
     @PostMapping("/update")
     public RetResponse updateSupplier(Supplier supplier) {
-        supplier.setUpdateTime(DateUtil.date());
+        supplier.setUpdateTime(new Date());
         if (supplierService.updateById(supplier)) {
             return new RetResponse().makeOKRsp(200, "SUCCESS");
         } else {
@@ -67,8 +69,8 @@ public class SupplierController {
     @ApiOperation("新增供应商")
     @PostMapping("/add")
     public RetResponse addSupplier(Supplier supplier) {
-        supplier.setCreateTime(DateUtil.date());
-        supplier.setUpdateTime(DateUtil.date());
+        supplier.setCreateTime(new Date());
+        supplier.setUpdateTime(new Date());
         if (supplierService.save(supplier)) {
             return new RetResponse().makeOKRsp(200, "SUCCESS");
         } else {

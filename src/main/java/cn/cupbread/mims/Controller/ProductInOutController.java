@@ -8,10 +8,14 @@ import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -22,7 +26,8 @@ import java.util.*;
  * @date : 2021/6/1
  * @description :
  */
-
+@RequestMapping("/product")
+@Api(tags = {"出入库控制类"})
 @RestController
 public class ProductInOutController {
 
@@ -39,9 +44,20 @@ public class ProductInOutController {
     @Autowired
     private SupplierService supplierService;
 
+    @ApiOperation("产品入库")
+    @PostMapping("/in")
+    @Transactional
+    public RetResponse addProductInRecord(ProductInRecord record) {
+        if (productInRecordService.productIn(record,1L)) {
+            return new RetResponse().makeOKRsp(200, "SUCCESS");
+        } else {
+            return new RetResponse().makeErrRsp(400, "FAIL");
+        }
+    }
+
 
     @ApiOperation("入库查询")
-    @GetMapping("/product/in/record")
+    @GetMapping("/in/record")
     public RetResponse getProductInRecord(@ApiParam(value = "当前页", example = "1", required = true) Long current,
                                           @ApiParam(value = "每页大小", example = "10", required = true) Long size,
                                           @ApiParam(value = "开始时间", example = "2021-6-4", required = true) Date startTime,
@@ -87,13 +103,13 @@ public class ProductInOutController {
         res.putOpt("productList", productList);
         res.putOpt("warehouseList", warehouseList);
         res.putOpt("supplierList", supplierList);
-        res.putOpt("total",recordIPage.getTotal());
+        res.putOpt("total", recordIPage.getTotal());
 
         return new RetResponse().makeOKRsp(200, res);
     }
 
     @ApiOperation("出库查询")
-    @GetMapping("/product/out/record")
+    @GetMapping("/out/record")
     public RetResponse getProductOutRecord(@ApiParam(value = "当前页", example = "1", required = true) Long current,
                                            @ApiParam(value = "每页大小", example = "10", required = true) Long size,
                                            @ApiParam(value = "开始时间", example = "2021-6-4", required = true) Date startTime,
@@ -131,7 +147,7 @@ public class ProductInOutController {
         res.putOpt("userList", userList);
         res.putOpt("productList", productList);
         res.putOpt("warehouseList", warehouseList);
-        res.putOpt("total",recordIPage.getTotal());
+        res.putOpt("total", recordIPage.getTotal());
 
 
         return new RetResponse().makeOKRsp(200, res);
