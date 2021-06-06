@@ -31,7 +31,7 @@ public class ProductInRecord implements Serializable {
     @ApiModelProperty(value = "仓库id")
     private Long wId;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "创建时间", hidden = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 

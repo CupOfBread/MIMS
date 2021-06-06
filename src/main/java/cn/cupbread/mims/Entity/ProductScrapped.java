@@ -22,7 +22,7 @@ public class ProductScrapped implements Serializable {
     @ApiModelProperty(value = "操作用户")
     private Long uId;
 
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty(value = "创建时间", hidden = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
