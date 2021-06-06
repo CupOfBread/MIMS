@@ -7,7 +7,7 @@ spring:
   #下面是数据库数据源的连接
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mims?characterEncoding=UTF-8&useUnicode=true&serverTimezone=UTC&useSSL=true
+    url: jdbc:mysql://localhost:3306/mims?characterEncoding=UTF-8&useUnicode=true&serverTimezone=Asia/Shanghai&useSSL=true
     username: root
     password: Ycw24689968
   web:
