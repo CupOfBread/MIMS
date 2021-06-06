@@ -13,6 +13,13 @@ Manufacturing Information Management System.
 This is a Java course design project. It can also be used in actual production environments.  
 The front end uses the Vue.js framework of JavaScript. The back end uses the Springboot of Java. Make issues when you meet bugs, invalid codes. Suggestions and Pull Requests for this project are always welcome. 
 
+##Progress
+- [x] Product in / out query
+- [ ] Product in / out management
+- [ ] Production and processing management
+- [ ] Warehouse transfer management
+- [ ] Product Scrapped management
+
 ## Dependency
 | dependency | version |
 |  ----  | ----  |
