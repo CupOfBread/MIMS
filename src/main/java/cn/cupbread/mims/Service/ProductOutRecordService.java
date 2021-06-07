@@ -11,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 
 public interface ProductOutRecordService extends IService<ProductOutRecord> {
+    Boolean productOut(ProductOutRecord record, Long uId);
 }

@@ -43,16 +43,53 @@ public class ProductInOutController {
     private WarehouseService warehouseService;
     @Autowired
     private SupplierService supplierService;
+    @Autowired
+    private ExpressService expressService;
 
     @ApiOperation("产品入库")
     @PostMapping("/in")
-    @Transactional
     public RetResponse addProductInRecord(ProductInRecord record) {
-        if (productInRecordService.productIn(record,1L)) {
+        if (productInRecordService.productIn(record, 1L)) {
             return new RetResponse().makeOKRsp(200, "SUCCESS");
         } else {
             return new RetResponse().makeErrRsp(400, "FAIL");
         }
+    }
+
+    @ApiOperation("获取入库记录-通过id")
+    @PostMapping("/in/id")
+    public RetResponse getProductInRecord(@ApiParam(value = "id", example = "1", required = true) Long id) {
+        ProductInRecord record = productInRecordService.getById(id);
+        if (record == null) return new RetResponse().makeOKRsp(200, "NULL", null);
+        User user = userService.getById(record.getUId());
+        Product product = productService.getById(record.getPId());
+        Supplier supplier = supplierService.getById(record.getSId());
+        Warehouse warehouse = warehouseService.getById(record.getWId());
+        JSONObject res = JSONUtil.createObj();
+        res.putOpt("record", record);
+        res.putOpt("user", user);
+        res.putOpt("product", product);
+        res.putOpt("supplier", supplier);
+        res.putOpt("warehouse", warehouse);
+        return new RetResponse().makeOKRsp(200, "SUCCESS", res);
+    }
+
+    @ApiOperation("获取入库记录-通过id")
+    @PostMapping("/out/id")
+    public RetResponse getProductOutRecord(@ApiParam(value = "id", example = "1", required = true) Long id) {
+        ProductOutRecord record = productOutRecordService.getById(id);
+        if (record == null) return new RetResponse().makeOKRsp(200, "NULL", null);
+        User user = userService.getById(record.getUId());
+        Product product = productService.getById(record.getPId());
+        Warehouse warehouse = warehouseService.getById(record.getWId());
+        Express express = expressService.getById(record.getExpressId());
+        JSONObject res = JSONUtil.createObj();
+        res.putOpt("record", record);
+        res.putOpt("user", user);
+        res.putOpt("product", product);
+        res.putOpt("warehouse", warehouse);
+        res.putOpt("express", express);
+        return new RetResponse().makeOKRsp(200, "SUCCESS", res);
     }
 
 
@@ -133,20 +170,24 @@ public class ProductInOutController {
         Set<Long> userId = new HashSet<>();
         Set<Long> productId = new HashSet<>();
         Set<Long> warehouseId = new HashSet<>();
+        Set<Long> expressId = new HashSet<>();
         for (ProductOutRecord record : outRecordList) {
             userId.add(record.getUId());
             productId.add(record.getPId());
             warehouseId.add(record.getWId());
+            expressId.add(record.getExpressId());
         }
         List<User> userList = userService.listByIds(userId);
         List<Product> productList = productService.listByIds(productId);
         List<Warehouse> warehouseList = warehouseService.listByIds(userId);
+        List<Express> expressList = expressService.listByIds(expressId);
 
         JSONObject res = JSONUtil.createObj();
         res.putOpt("recordList", outRecordList);
         res.putOpt("userList", userList);
         res.putOpt("productList", productList);
         res.putOpt("warehouseList", warehouseList);
+        res.putOpt("expressList", expressList);
         res.putOpt("total", recordIPage.getTotal());
 
 

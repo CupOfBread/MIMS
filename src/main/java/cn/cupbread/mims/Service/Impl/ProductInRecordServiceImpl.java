@@ -1,10 +1,10 @@
 package cn.cupbread.mims.Service.Impl;
 
-import cn.cupbread.mims.Component.RetResponse;
 import cn.cupbread.mims.DAO.ProductInRecordDAO;
 import cn.cupbread.mims.Entity.*;
+import cn.cupbread.mims.Exception.DatabaseOperationException;
 import cn.cupbread.mims.Service.*;
-import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,13 +42,25 @@ public class ProductInRecordServiceImpl extends ServiceImpl<ProductInRecordDAO, 
         Supplier supplier = supplierService.getById(record.getSId());
         Warehouse warehouse = warehouseService.getById(record.getWId());
         User user = userService.getById(uId);
-        if (product == null || supplier == null || warehouse == null) throw new RuntimeException("信息错误");
+        if (product == null || supplier == null || warehouse == null || user == null)
+            throw new RuntimeException("信息错误");
 
         //库存表新增记录
-        boolean inventorySave = inventoryService.save(new Inventory()
-                .setQuantity(record.getQuantity())
-                .setPId(product.getId())
-                .setWId(warehouse.getId()));
+        QueryWrapper<Inventory> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("p_id", product.getId()).eq("w_id", warehouse.getId());
+        Inventory inventory = inventoryService.getOne(queryWrapper);
+        //库存表内是否存在该产品的库存
+        boolean inventorySave = false;
+        if (inventory == null) {
+            inventorySave = inventoryService.save(new Inventory()
+                    .setQuantity(record.getQuantity())
+                    .setPId(product.getId())
+                    .setWId(warehouse.getId()));
+        } else {
+            inventory.setQuantity(inventory.getQuantity() + record.getQuantity());
+            inventorySave = inventoryService.updateById(inventory);
+        }
+
         //更新仓库库存
         warehouse.setStock(warehouse.getStock() + record.getQuantity());
         boolean warehouseSave = warehouseService.updateById(warehouse);
@@ -57,6 +69,7 @@ public class ProductInRecordServiceImpl extends ServiceImpl<ProductInRecordDAO, 
         record.setUId(user.getId());
         boolean productInSave = productInRecordService.save(record);
 
-        return inventorySave && warehouseSave && productInSave;
+        if (!inventorySave || !warehouseSave || !productInSave) throw new DatabaseOperationException();
+        return true;
     }
 }

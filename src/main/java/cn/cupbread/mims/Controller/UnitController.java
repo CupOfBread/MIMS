@@ -1,7 +1,6 @@
 package cn.cupbread.mims.Controller;
 
 import cn.cupbread.mims.Component.RetResponse;
-import cn.cupbread.mims.Entity.Inventory;
 import cn.cupbread.mims.Entity.Product;
 import cn.cupbread.mims.Entity.Unit;
 import cn.cupbread.mims.Service.*;
