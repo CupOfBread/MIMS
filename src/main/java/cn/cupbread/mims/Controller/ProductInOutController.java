@@ -56,6 +56,16 @@ public class ProductInOutController {
         }
     }
 
+    @ApiOperation("产品入库")
+    @PostMapping("/out")
+    public RetResponse addProductOutRecord(ProductOutRecord record) {
+        if (productOutRecordService.productOut(record, 1L)) {
+            return new RetResponse().makeOKRsp(200, "SUCCESS");
+        } else {
+            return new RetResponse().makeErrRsp(400, "FAIL");
+        }
+    }
+
     @ApiOperation("获取入库记录-通过id")
     @PostMapping("/in/id")
     public RetResponse getProductInRecord(@ApiParam(value = "id", example = "1", required = true) Long id) {
