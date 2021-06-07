@@ -34,4 +34,8 @@ public class GlobalExceptionHandler {
         return new RetResponse().makeErrRsp(500, "IO错误:"+e.getCause());
     }
 
+    @ExceptionHandler(value = DatabaseOperationException.class)
+    public RetResponse NullPointer(DatabaseOperationException e) {
+        return new RetResponse().makeErrRsp(500, "数据库操作异常" + e.getMessage());
+    }
 }
