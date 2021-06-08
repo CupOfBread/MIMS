@@ -27,7 +27,7 @@ import java.util.List;
  */
 
 @RequestMapping("/bank")
-@Api(tags = {"计量银行控制类"})
+@Api(tags = {"金融银行控制类"})
 @RestController
 public class FinanceBankController {
 

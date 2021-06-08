@@ -124,7 +124,7 @@ public class ProductInOutController {
         map.put("u_id", uId);
         map.put("serial_number", serialNumber);
         QueryWrapper<ProductInRecord> queryWrapper = new QueryWrapper<>();
-        queryWrapper.allEq(map, false).between("create_time", startTime, endTime);
+        queryWrapper.allEq(map, false).between("create_time", startTime, endTime).orderByDesc("id");
         IPage<ProductInRecord> recordIPage = productInRecordService.page(page, queryWrapper);
         List<ProductInRecord> inRecordList = recordIPage.getRecords();
         if (inRecordList.size() == 0) return new RetResponse().makeOKRsp(200, null);
@@ -172,7 +172,7 @@ public class ProductInOutController {
         map.put("u_id", uId);
         map.put("serial_number", serialNumber);
         QueryWrapper<ProductOutRecord> queryWrapper = new QueryWrapper<>();
-        queryWrapper.allEq(map, false).between("create_time", startTime, endTime);
+        queryWrapper.allEq(map, false).between("create_time", startTime, endTime).orderByDesc("id");
         IPage<ProductOutRecord> recordIPage = productOutRecordService.page(page, queryWrapper);
         List<ProductOutRecord> outRecordList = recordIPage.getRecords();
         if (outRecordList.size() == 0) return new RetResponse().makeOKRsp(200, null);

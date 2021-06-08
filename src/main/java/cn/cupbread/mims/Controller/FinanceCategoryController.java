@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RequestMapping("/bank/c")
-@Api(tags = {"计量财务分类控制类"})
+@Api(tags = {"财务分类控制类"})
 @RestController
 public class FinanceCategoryController {
 
