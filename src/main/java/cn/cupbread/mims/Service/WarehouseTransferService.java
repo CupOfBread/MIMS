@@ -11,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 
 public interface WarehouseTransferService extends IService<WarehouseTransfer> {
+    Boolean warehouseTransfer(WarehouseTransfer transferRecord);
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,8 +26,8 @@ import java.util.List;
  * @description :
  */
 
-@RequestMapping("/warehouse_t")
-@Api(tags = {"计量单位控制类"})
+@RequestMapping("/warehouse/t")
+@Api(tags = {"仓库调度控制类"})
 @RestController
 public class WarehouseTransferController {
 
@@ -36,48 +37,43 @@ public class WarehouseTransferController {
     private ProductService productService;
 
 
-    @ApiOperation("获取单位-通过id")
+    @ApiOperation("获取仓库调度-通过id")
     @GetMapping("/id")
     public RetResponse getWarehouseTransferById(Long id) {
         return new RetResponse().makeOKRsp(200, "SUCCESS", warehouseTransferService.getById(id));
     }
 
-    @ApiOperation("获取所有单位")
+    @ApiOperation("获取所有仓库调度")
     @GetMapping("/page")
     public RetResponse getWarehouseTransferPage(@ApiParam(value = "当前页", example = "1", required = true) Long current,
-                                   @ApiParam(value = "每页大小", example = "10", required = true) Long size) {
+                                                @ApiParam(value = "每页大小", example = "10", required = true) Long size,
+                                                @ApiParam(value = "开始时间", example = "2021-6-4", required = true) Date startTime,
+                                                @ApiParam(value = "结束时间", example = "2021-6-4", required = true) Date endTime) {
         Page<WarehouseTransfer> page = new Page<>(current, size);
+        QueryWrapper<WarehouseTransfer> queryWrapper = new QueryWrapper<>();
+        queryWrapper.between("create_time", startTime, endTime).orderByDesc("id");
         return new RetResponse().makeOKRsp(200, "SUCCESS", warehouseTransferService.page(page));
     }
 
-    @ApiOperation("更新单位")
-    @PostMapping("/update")
-    public RetResponse updateWarehouseTransfer(WarehouseTransfer warehouseTransfer) {
-        if (warehouseTransferService.updateById(warehouseTransfer)) {
-            return new RetResponse().makeOKRsp(200, "SUCCESS");
-        } else {
-            return new RetResponse().makeErrRsp(400, "FAIL");
-        }
-    }
 
-    @ApiOperation("新增单位")
+    @ApiOperation("新增仓库调度")
     @PostMapping("/add")
     public RetResponse addWarehouseTransfer(WarehouseTransfer warehouseTransfer) {
-        if (warehouseTransferService.save(warehouseTransfer)) {
+        if (warehouseTransferService.warehouseTransfer(warehouseTransfer)) {
             return new RetResponse().makeOKRsp(200, "SUCCESS");
         } else {
             return new RetResponse().makeErrRsp(400, "FAIL");
         }
     }
 
-    @ApiOperation("删除单位")
+    @ApiOperation("删除仓库调度")
     @PostMapping("/del")
     public RetResponse delWarehouseTransfer(Long id) {
         QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("warehouseTransfer", id);
         List<Product> productList = productService.list(queryWrapper);
         if (productList.size() > 0) {
-            return new RetResponse().makeErrRsp(400, "已有产品使用该计量单位，无法删除！");
+            return new RetResponse().makeErrRsp(400, "已有产品使用该计量仓库调度，无法删除！");
         } else {
             if (warehouseTransferService.removeById(id)) {
                 return new RetResponse().makeOKRsp(200, "SUCCESS");

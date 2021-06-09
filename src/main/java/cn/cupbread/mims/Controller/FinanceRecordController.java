@@ -93,16 +93,6 @@ public class FinanceRecordController {
         return new RetResponse().makeOKRsp(200, "SUCCESS", res);
     }
 
-    @ApiOperation("更新财务记录")
-    @PostMapping("/update")
-    public RetResponse updateFinanceRecord(FinanceRecord financeRecord) {
-        if (financeRecordService.updateById(financeRecord)) {
-            return new RetResponse().makeOKRsp(200, "SUCCESS");
-        } else {
-            return new RetResponse().makeErrRsp(400, "FAIL");
-        }
-    }
-
     @ApiOperation("新增财务记录")
     @PostMapping("/add")
     public RetResponse addFinanceRecord(FinanceRecord financeRecord) {
