@@ -19,6 +19,7 @@ The front end uses the Vue.js framework of JavaScript. The back end uses the Spr
 - [ ] Production and processing management
 - [x] Warehouse transfer management
 - [ ] Product Scrapped management
+- [ ] SpringSecurity
 
 ## Dependency
 | dependency | version |
@@ -27,9 +28,10 @@ The front end uses the Vue.js framework of JavaScript. The back end uses the Spr
 | mysql-connector | 8.0.25 |
 | druid | 1.2.6 |
 | mybatis-plus | 3.4.3 |
-| spring-boot-data-redis | 2.5.0 |
+| redis(starter) | 2.5.0 |
 | springfox | 3.0.0 |
 | lombok | 1.18.20 |
+| spring-security(starter) | 2.5.0 |
 
 ## License
 - MPL 2.0
