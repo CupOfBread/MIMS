@@ -1,5 +1,6 @@
 package cn.cupbread.mims.Config.SecurityHandler;
 
+import cn.cupbread.mims.Entity.User;
 import cn.cupbread.mims.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
