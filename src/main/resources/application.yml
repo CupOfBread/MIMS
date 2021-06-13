@@ -6,6 +6,9 @@ spring:
       enabled: true
       max-request-size: 30MB
       max-file-size: 11MB
+  jackson:
+    #格式化返回时间 yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
   #下面是数据库数据源的连接
   datasource:
     #type: com.alibaba.druid.pool.DruidDataSource
@@ -65,7 +68,7 @@ spring:
         max-wait: -1
         max-idle: 10
         min-idle: 0
-    timeout: 1000
+    timeout: 60s
   web:
     resources:
       chain:

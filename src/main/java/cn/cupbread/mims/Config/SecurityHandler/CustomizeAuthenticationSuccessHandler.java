@@ -1,7 +1,9 @@
 package cn.cupbread.mims.Config.SecurityHandler;
 
+import cn.cupbread.mims.Component.RetResponse;
 import cn.cupbread.mims.Entity.User;
 import cn.cupbread.mims.Service.UserService;
+import cn.hutool.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -20,6 +22,7 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-
+        httpServletResponse.setContentType("text/json;charset=utf-8");
+        httpServletResponse.getWriter().write(JSONUtil.toJsonStr(new RetResponse().makeErrRsp(403, "无权限访问")));
     }
 }

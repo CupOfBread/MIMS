@@ -55,6 +55,6 @@ public class Supplier implements Serializable {
     private Date updateTime;
 
     @ApiModelProperty(value = "更新人id")
-    private Date uId;
+    private Long uId;
 
 }

@@ -31,7 +31,7 @@ public class Product implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "产品货号")
-    private Integer itemNumber;
+    private String itemNumber;
 
     @ApiModelProperty(value = "产品规格")
     private String specifications;

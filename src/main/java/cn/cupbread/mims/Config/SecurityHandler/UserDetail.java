@@ -1,5 +1,6 @@
 package cn.cupbread.mims.Config.SecurityHandler;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,7 +13,8 @@ import java.util.Collection;
  * @description :
  */
 
-public class JwtUser implements UserDetails {
+@Data
+public class UserDetail implements UserDetails {
 
     private String username;
     private String password;

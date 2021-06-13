@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,7 @@ public class ProductInOutController {
 
     @ApiOperation("产品入库")
     @PostMapping("/in")
+    @PreAuthorize("hasRole('admin')")
     public RetResponse addProductInRecord(ProductInRecord record) {
         if (productInRecordService.productIn(record, 1L)) {
             return new RetResponse().makeOKRsp(200, "SUCCESS");

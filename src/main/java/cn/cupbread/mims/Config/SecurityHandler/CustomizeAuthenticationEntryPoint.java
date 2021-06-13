@@ -16,6 +16,6 @@ public class CustomizeAuthenticationEntryPoint implements AuthenticationEntryPoi
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.setContentType("text/json;charset=utf-8");
-        httpServletResponse.getWriter().write(JSONUtil.toJsonStr(new RetResponse().makeErrRsp(403, "无权限访问")));
+        httpServletResponse.getWriter().write(JSONUtil.toJsonStr(new RetResponse().makeErrRsp(401, "身份验证失败")));
     }
 }
