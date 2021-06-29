@@ -12,12 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -49,8 +44,8 @@ public class ProductInOutController {
 
     @ApiOperation("产品入库")
     @PostMapping("/in")
-    @PreAuthorize("hasRole('admin')")
     public RetResponse addProductInRecord(ProductInRecord record) {
+        System.out.println("in");
         if (productInRecordService.productIn(record, 1L)) {
             return new RetResponse().makeOKRsp(200, "SUCCESS");
         } else {
@@ -69,7 +64,7 @@ public class ProductInOutController {
     }
 
     @ApiOperation("获取入库记录-通过id")
-    @PostMapping("/in/id")
+    @GetMapping("/in/id")
     public RetResponse getProductInRecord(@ApiParam(value = "id", example = "1", required = true) Long id) {
         ProductInRecord record = productInRecordService.getById(id);
         if (record == null) return new RetResponse().makeOKRsp(200, "NULL", null);
@@ -87,7 +82,7 @@ public class ProductInOutController {
     }
 
     @ApiOperation("获取入库记录-通过id")
-    @PostMapping("/out/id")
+    @GetMapping("/out/id")
     public RetResponse getProductOutRecord(@ApiParam(value = "id", example = "1", required = true) Long id) {
         ProductOutRecord record = productOutRecordService.getById(id);
         if (record == null) return new RetResponse().makeOKRsp(200, "NULL", null);
