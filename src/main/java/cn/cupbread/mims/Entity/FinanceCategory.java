@@ -20,8 +20,4 @@ public class FinanceCategory implements Serializable {
     @ApiModelProperty(value = "分类名称")
     private String name;
 
-    @ApiModelProperty(value = "类型")
-    private String type;
-
-
 }

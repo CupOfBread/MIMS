@@ -77,13 +77,14 @@ public class WarehouseTransferController {
         }
         List<User> userList = userService.listByIds(uId);
         List<Product> productList = productService.listByIds(pId);
-        List<Warehouse> WarehouseIn = warehouseService.listByIds(inId);
-        List<Warehouse> WarehouseOut = warehouseService.listByIds(outId);
+        List<Warehouse> warehouseIn = warehouseService.listByIds(inId);
+        List<Warehouse> warehouseOut = warehouseService.listByIds(outId);
         JSONObject res = JSONUtil.createObj();
         res.putOpt("userList", userList);
+        res.putOpt("warehouseTransferList", warehouseTransferList);
         res.putOpt("productList", productList);
-        res.putOpt("WarehouseIn", WarehouseIn);
-        res.putOpt("WarehouseOut", WarehouseOut);
+        res.putOpt("warehouseIn", warehouseIn);
+        res.putOpt("warehouseOut", warehouseOut);
         res.putOpt("total", iPage.getTotal());
 
 

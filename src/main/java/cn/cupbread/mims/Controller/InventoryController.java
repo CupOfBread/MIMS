@@ -60,18 +60,18 @@ public class InventoryController {
                                         @ApiParam(value = "每页大小", example = "10", required = true) Long size) {
         Page<Inventory> page = new Page<>(current, size);
         IPage<Inventory> inventoryPage = inventoryService.page(page);
-        List<Inventory> inventories = inventoryPage.getRecords();
-        if (inventories.size() == 0) return new RetResponse().makeOKRsp(200, null);
+        List<Inventory> inventoryList = inventoryPage.getRecords();
+        if (inventoryList.size() == 0) return new RetResponse().makeOKRsp(200, null);
         Set<Long> productId = new HashSet<>();
         Set<Long> warehouseId = new HashSet<>();
-        for (Inventory inventory : inventories) {
+        for (Inventory inventory : inventoryList) {
             productId.add(inventory.getPId());
             warehouseId.add(inventory.getWId());
         }
         List<Product> productList = productService.listByIds(productId);
         List<Warehouse> warehouseList = warehouseService.listByIds(warehouseId);
         JSONObject res = JSONUtil.createObj();
-        res.putOpt("inventoryList", inventoryPage);
+        res.putOpt("inventoryList", inventoryList);
         res.putOpt("productList", productList);
         res.putOpt("warehouseList", warehouseList);
         res.putOpt("total", inventoryPage.getTotal());

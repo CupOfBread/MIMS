@@ -52,7 +52,7 @@ public class SupplierController {
     public RetResponse getSupplierPage(@ApiParam(value = "当前页", example = "1", required = true) Long current,
                                    @ApiParam(value = "每页大小", example = "10", required = true) Long size) {
         Page<Supplier> page = new Page<>(current, size);
-        return new RetResponse().makeOKRsp(200, "SUCCESS", supplierService.page(page));
+        return new RetResponse().makeOKRsp(200, "SUCCESS", supplierService.page(page).getRecords());
     }
 
     @ApiOperation("更新供应商")

@@ -52,9 +52,9 @@ public class Product implements Serializable {
     private String remarks;
 
     @ApiModelProperty(value = "产品分类id")
-    private Long cid;
+    private Long cId;
 
     @ApiModelProperty(value = "创建员工")
-    private Long uid;
+    private Long uId;
 
 }
