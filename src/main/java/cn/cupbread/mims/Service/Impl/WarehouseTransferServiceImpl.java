@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * @author : Cup Of Bread
  * @version : 1.0.0
@@ -62,6 +64,7 @@ public class WarehouseTransferServiceImpl extends ServiceImpl<WarehouseTransferD
         flag = flag & inventoryService.updateById(inventoryOut);
         warehouseOut.setStock(warehouseOut.getStock() - transferRecord.getQuantity());
         warehouseIn.setStock(warehouseOut.getStock() + transferRecord.getQuantity());
+        transferRecord.setCreateTime(new Date());
         flag = flag & warehouseService.updateById(warehouseIn);
         flag = flag & warehouseService.updateById(warehouseOut);
         flag = flag & warehouseTransferService.save(transferRecord);
